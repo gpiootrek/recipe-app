@@ -1,0 +1,26 @@
+.category-card {
+  flex: 1;
+  cursor: pointer;
+
+  &__image-container {
+    width: 24rem;
+    height: 24rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  &__image {
+    height: 100%;
+  }
+
+  &__name {
+    margin-top: 2.8rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    color: #000;
+  }
+}

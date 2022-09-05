@@ -1,0 +1,20 @@
+<header class="header">
+  <img src="../../../../assets/img/logo.png" width="80" class="header__logo" />
+  <nav class="header__nav">
+    <a routerLink="/" class="header__link">Homepage</a>
+    <a routerLink="/recipes" class="header__link">Recipes</a>
+    <a routerLink="/categories" class="header__link">Categories</a>
+    <a routerLink="/saved" class="header__link">Saved</a>
+  </nav>
+  <div class="header__buttons-container">
+    <button class="header__button">
+      <img src="../../../../assets/img/search.svg" width="30" />
+    </button>
+    <button class="header__button" (click)="openDialog()" *ngIf="!isLogged">
+      <img src="../../../../assets/img/profile.svg" width="30" />
+    </button>
+    <a class="header__button" routerLink="/profile" *ngIf="isLogged">
+      <img src="{{user?.photoURL}}" width="30" />
+    </a>
+  </div>
+</header>

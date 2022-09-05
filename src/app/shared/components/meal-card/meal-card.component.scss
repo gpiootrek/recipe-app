@@ -1,0 +1,30 @@
+.recipe-card {
+  flex: 1;
+  position: relative;
+
+  &__thumb {
+    width: 100%;
+    border-radius: 1rem;
+  }
+
+  &__rating {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  &__name {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &__link {
+    display: block;
+    text-align: end;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    &:hover {
+      transform: translateX(.5rem);
+    }
+  }
+}

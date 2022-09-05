@@ -1,0 +1,21 @@
+<div class="recipe-card" *ngIf="meal">
+  <img
+    src="{{ meal.strMealThumb }}"
+    alt=""
+    width="100"
+    class="recipe-card__thumb"
+  />
+  <div class="recipe-card__rating">
+    <img
+      src="../../../../assets/img/star.svg"
+      alt=""
+      *ngFor="let number of [0, 1, 2, 3, 4]"
+      width="20"
+      class="recipe-card__star"
+    />
+  </div>
+  <span class="recipe-card__name">{{ meal.strMeal }}</span>
+  <a routerLink="/recipe/{{ meal.idMeal }}" class="recipe-card__link">
+    <img src="../../../../assets/img/arrow.svg" alt="" width="30" />
+  </a>
+</div>

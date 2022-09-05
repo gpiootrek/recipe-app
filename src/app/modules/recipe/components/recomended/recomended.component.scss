@@ -1,0 +1,19 @@
+.recomended {
+  margin: 5rem 0;
+  &__heading {
+    margin: 2rem 0;
+    font-size: 2.8rem;
+  }
+
+  &__meals {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    flex-wrap: wrap;
+    gap: 3rem 2rem;
+    & * {
+      width: 20%;
+    }
+  }
+}

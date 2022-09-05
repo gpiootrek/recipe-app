@@ -1,0 +1,61 @@
+@use "../../../../../assets/styles" as *;
+
+.home {
+  &__main-recipe {
+    display: flex;
+    position: relative;
+  }
+}
+
+.main-recipe {
+  &__image-container {
+    width: 60%;
+    max-height: 64rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    width: 40%;
+    padding: 8rem;
+    background: $background-highlight;
+  }
+
+  &__reviews {
+    font-size: 1.2rem;
+  }
+
+  &__name {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  &__desc {
+    font-size: 1.6rem;
+  }
+
+  &__button {
+    border: none;
+    background: transparent;
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &:hover {
+      transform: translateX(0.5rem);
+    }
+  }
+}

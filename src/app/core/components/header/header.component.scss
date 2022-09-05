@@ -1,0 +1,33 @@
+@use "../../../../assets/styles" as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 10%;
+
+  &__logo {
+    width: 10rem;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 8rem;
+  }
+
+  &__link {
+    font-size: 2rem;
+    color: $color-primary;
+  }
+
+  &__buttons-container {
+    display: flex;
+    gap: 4rem;
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}

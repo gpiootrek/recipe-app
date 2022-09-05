@@ -1,0 +1,13 @@
+<section *ngIf="meals" class="category-view">
+  <h2 class="category-view__heading">{{ category | titlecase }}</h2>
+  <div class="category-view__container">
+    <a
+      class="category-view__card"
+      *ngFor="let meal of meals"
+      routerLink="/recipe/{{ meal.idMeal }}"
+    >
+      <img src="{{ meal.strMealThumb }}" alt="" class="category-view__image" />
+      <p class="category-view__name">{{ meal.strMeal! | shorten:20 }}</p>
+    </a>
+  </div>
+</section>

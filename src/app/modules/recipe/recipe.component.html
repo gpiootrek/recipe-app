@@ -1,0 +1,54 @@
+<div *ngIf="recipe | async as recipe" class="recipe">
+  <header class="recipe__header">
+    <h2 class="recipe__name">{{ recipe.name }}</h2>
+    <div *ngFor="let tag of recipe.tags" class="recipe__tag">{{ tag }}</div>
+  </header>
+  <p class="recipe__details">{{ recipe.category }} | {{ recipe.area }}</p>
+  <p class="recipe__description">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt iure ut
+    autem quos quasi voluptates suscipit corporis inventore, error ab.
+  </p>
+  <div class="recipe__image-container">
+    <img src="{{ recipe.thumbUrl }}" alt="" class="recipe__image" />
+  </div>
+  <div class="recipe__links-container">
+    <a *ngIf="recipe.source" href="{{ recipe.source }}" target="_blank" class="recipe__link">
+      <img
+        src="../../../assets/img/internet.svg"
+        alt=""
+        width="24"
+        height="32"
+      />
+      Source
+    </a>
+    <a *ngIf="recipe.youtubeUrl" href="{{ recipe.youtubeUrl }}" target="_blank" class="recipe__link">
+      <img
+        src="../../../assets/img/youtube.svg"
+        alt=""
+        width="24"
+        height="32"
+      />
+      YouTube
+    </a>
+  </div>
+  <div class="recipe__content">
+    <div class="recipe__content-container">
+      <h3 class="recipe__heading">Ingredients</h3>
+      <ul class="recipe__ingredients">
+        <li
+          *ngFor="let ingredient of recipe.ingredients"
+          class="recipe__ingredient"
+        >
+          {{ ingredient[1] }} {{ ingredient[0] }}
+        </li>
+      </ul>
+    </div>
+    <div class="recipe__content-container">
+      <h3 class="recipe__heading">Instructions</h3>
+      <p class="recipe__instructions">{{ recipe.instructions }}</p>
+    </div>
+  </div>
+  <recipe-comments-section></recipe-comments-section>
+  <recipe-recomended [category]="recipe.category"></recipe-recomended>
+  <app-newsletter-form></app-newsletter-form>
+</div>

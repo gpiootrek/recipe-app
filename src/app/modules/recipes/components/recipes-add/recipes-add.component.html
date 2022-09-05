@@ -1,0 +1,126 @@
+<section class="add-recipe">
+  <form
+    action=""
+    class="add-recipe__form"
+    [formGroup]="recipeForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <header class="add-recipe__header">
+      <h2 class="add-recipe__heading">Add recipe</h2>
+      <button
+        class="add-recipe__button"
+        type="submit"
+        [disabled]="!recipeForm.valid"
+      >
+        Add
+      </button>
+    </header>
+    <div class="add-recipe__group">
+      <label for="thumb" class="add-recipe__label">
+        Enter a meal thumb url
+        <input
+          type="text"
+          name="thumbUrl"
+          id="thumbUrl"
+          class="add-recipe__input"
+          formControlName="thumbUrl"
+        />
+      </label>
+      <label for="name" class="add-recipe__label">
+        Name
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="add-recipe__input"
+          formControlName="name"
+        />
+      </label>
+      <label for="category" class="add-recipe__label">
+        Select a category
+        <select
+          name="category"
+          id="category"
+          class="add-recipe__select"
+          formControlName="category"
+        >
+          <option *ngFor="let category of categories" value="{{ category }}">
+            {{ category }}
+          </option>
+        </select>
+      </label>
+      <label for="instructions" class="add-recipe__label">
+        Instructions
+        <textarea
+          name="instructions"
+          id="instructions"
+          class="add-recipe__textarea"
+          cols="30"
+          rows="10"
+          formControlName="instructions"
+        ></textarea>
+      </label>
+      <label for="area" class="add-recipe__label">
+        Area
+        <input
+          type="text"
+          name="area"
+          id="area"
+          class="add-recipe__input"
+          formControlName="area"
+        />
+      </label>
+      <label for="youtube" class="add-recipe__label">
+        YouTube url
+        <input
+          type="text"
+          name="youtube"
+          id="youtube"
+          class="add-recipe__input"
+          formControlName="youtubeUrl"
+        />
+      </label>
+      <label for="source" class="add-recipe__label">
+        Source
+        <input
+          type="text"
+          name="source"
+          id="source"
+          class="add-recipe__input"
+          formControlName="source"
+        />
+      </label>
+    </div>
+    <div class="add-recipe__group">
+      <label for="" class="add-recipe__label"> Enter Ingredients </label>
+      <div
+        class="add-recipe__ingredients"
+        *ngFor="let ing of ingredients.controls; let i = index"
+        formGroupName="ingredients"
+      >
+        <ng-container [formGroupName]="i">
+          <input
+            type="text"
+            placeholder="Ingredient"
+            class="add-recipe__input add-recipe__input--ingredients"
+            formControlName="ingredient"
+          />
+          <input
+            type="text"
+            placeholder="Measure"
+            class="add-recipe__input add-recipe__input--ingredients"
+            formControlName="measure"
+          />
+        </ng-container>
+      </div>
+      <button
+        type="button"
+        (click)="addIngredient()"
+        class="add-recipe__button"
+        [disabled]="ingredients.status === 'INVALID'"
+      >
+        + Next ingredient
+      </button>
+    </div>
+  </form>
+</section>

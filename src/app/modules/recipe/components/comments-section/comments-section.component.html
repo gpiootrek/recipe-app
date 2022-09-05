@@ -1,0 +1,21 @@
+<section class="comments">
+  <h2 class="comments__heading">Already made this?</h2>
+  <form class="comments__add-form" (ngSubmit)="onAddComment()">
+    <textarea
+      name="add-comment"
+      id=""
+      cols="30"
+      rows="10"
+      class="comments__add-comment"
+      placeholder="Write a comment here"
+      [(ngModel)]="newComment"
+      required
+    ></textarea>
+    <button class="comments__submit">Post comment</button>
+  </form>
+  <h2 class="comments__heading comments__heading--border-bottom">Comments</h2>
+  <recipe-comment
+    *ngFor="let comment of comments$ | async | filter: recipeId:'recipeId'"
+    [comment]="comment"
+  ></recipe-comment>
+</section>

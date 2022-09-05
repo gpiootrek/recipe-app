@@ -1,0 +1,43 @@
+<mat-dialog-content class="modal">
+    <form action="" class="login-form">
+      <h2 class="login-form__title">Signup</h2>
+      <input
+        type="text"
+        name="name"
+        placeholder="Username"
+        required
+        class="login-form__input"
+        #userName
+      />
+      <input
+        type="text"
+        name="email"
+        placeholder="Email"
+        required
+        class="login-form__input"
+        #userEmail
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+        class="login-form__input"
+        #userPassword
+      />
+    </form>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      class="login-form__submit"
+      (click)="authService.SignUp(userEmail.value, userPassword.value, userName.value)"
+    >
+      Sign up
+    </button>
+  </mat-dialog-actions>
+  

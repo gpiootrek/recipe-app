@@ -1,0 +1,55 @@
+@use "../../../../assets/styles" as *;
+
+.footer {
+  background-color: $background-footer;
+  padding: 4rem 10%;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__text-content {
+    max-width: 30rem;
+  }
+
+  &__heading {
+    font-size: 2rem;
+  }
+
+  &__text {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    color: $color-secondary;
+  }
+
+  &__links-container {
+    display: flex;
+    gap: 4rem;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__link {
+    font-size: 1.4rem;
+    color: $color-secondary;
+
+    &--title {
+      font-weight: 600;
+      color: $color-primary;
+    }
+  }
+
+  &__line {
+    margin: 8rem 0 2rem;
+  }
+
+  &__copyright {
+    font-size: 1.2rem;
+  }
+}

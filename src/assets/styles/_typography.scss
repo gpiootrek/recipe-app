@@ -1,0 +1,19 @@
+@use "./variables" as *;
+
+html {
+  font-size: 62.5%;
+  font-family: $font-inter;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-playfair;
+}

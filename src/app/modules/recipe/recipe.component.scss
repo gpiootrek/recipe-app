@@ -1,0 +1,99 @@
+@use "../../../assets/styles" as *;
+
+.recipe {
+  padding: 0 10%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 4rem 0 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $button-primary;
+  }
+
+  &__name {
+    font-size: 4rem;
+  }
+
+  &__tag {
+    padding: 1rem 3rem;
+    border-radius: .4rem;
+    background-color: $background-secondary;
+    color: $color-primary;
+  }
+
+  &__details {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: $color-primary;
+    border-bottom: 1px solid $color-secondary;
+  }
+
+  &__links-container {
+    display: flex;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    margin-right: 3rem;
+    font-size: 1.8rem;
+    color: $color-primary;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__description {
+    font-size: 1.6rem;
+  }
+
+  &__image-container {
+    max-height: 60rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 1rem;
+    margin: 4rem 0 2rem;
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid $button-primary;
+  }
+
+  &__content-container {
+    margin: 3rem 0;
+    width: 50%;
+  }
+
+  &__heading {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__ingredients {
+    list-style-type: none;
+  }
+
+  &__ingredient {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+
+  &__instructions {
+    font-size: 1.6rem;
+  }
+}

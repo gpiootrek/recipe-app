@@ -1,0 +1,57 @@
+@use "../../../../../assets/styles" as *;
+
+.comments {
+  &__heading {
+    font-size: 2.8rem;
+    margin: 2rem 0;
+
+    &--border-bottom {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid $color-secondary;
+    }
+  }
+
+  &__add-form {
+    width: 100%;
+    position: relative;
+  }
+
+  &__add-comment {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.4rem;
+    background: $background-footer;
+    font-size: 1.6rem;
+    font-family: inherit;
+    resize: none;
+
+    &:focus {
+      outline: 1px solid $button-primary;
+    }
+  }
+
+  &__submit {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: $button-primary;
+    font-size: 1.6rem;
+    color: $background-primary;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+
+    &:hover {
+      transform: scale(0.96);
+    }
+  }
+
+  &__amount {
+    font-family: $font-inter;
+    font-weight: 400;
+    font-size: 1.8rem;
+  }
+}

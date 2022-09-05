@@ -1,0 +1,32 @@
+<div class="comment">
+  <img
+    src="{{ comment.user.photoURL }}"
+    alt=""
+    class="comment__profile-image"
+    width="64"
+  />
+  <div class="comment__content">
+    <p class="comment__user">{{ comment.user.displayName }}</p>
+    <p class="comment__date">{{ comment.date | date }}</p>
+    <p class="comment__text">
+      {{ comment.text }}
+    </p>
+    <div class="comment__actions">
+      <button class="comment__button">
+        <img src="../../../../../assets/img/reply.svg" alt="" width="16" />
+      </button>
+      <span class="comment__label">
+        {{ comment.replies.length }}
+      </span>
+      <button class="comment__button">
+        <img src="../../../../../assets/img/heart.svg" alt="" width="16" />
+      </button>
+      <span class="comment__label">
+        {{ comment.likes }}
+      </span>
+      <button class="comment__button">
+        <img src="../../../../../assets/img/more.svg" alt="" width="16" />
+      </button>
+    </div>
+  </div>
+</div>

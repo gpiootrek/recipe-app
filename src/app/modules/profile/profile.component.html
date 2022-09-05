@@ -1,0 +1,54 @@
+<section class="profile">
+  <header class="profile__header">
+    <h2 class="profile__heading">Profile</h2>
+    <div class="header__container">
+      <button class="profile__button" (click)="this.authService.SignOut()">
+        Sign out
+      </button>
+      <button
+        class="profile__button"
+        (click)="saveUser(userName.value, userEmail.value, userPassword.value)"
+      >
+        Save
+      </button>
+    </div>
+  </header>
+  <div class="profile__user">
+    <div class="user__image-container">
+      <img src="{{ user.photoURL }}" alt="" width="128" />
+      <button class="profile__button">Change photo</button>
+      <button class="profile__button profile__button--secondary">Reset</button>
+    </div>
+    <div class="user__info-container">
+      <label for="" class="user__label">
+        Username
+        <input
+          type="text"
+          name="username"
+          class="user__input"
+          [defaultValue]="user.displayName"
+          #userName
+        />
+      </label>
+      <label for="" class="user__label">
+        Email
+        <input
+          type="email"
+          name="email"
+          class="user__input"
+          [defaultValue]="user.email"
+          #userEmail
+        />
+      </label>
+      <label for="" class="user__label">
+        Password
+        <input
+          type="password"
+          class="user__input"
+          name="password"
+          #userPassword
+        />
+      </label>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+<div class="home">
+  <home-main-recipe></home-main-recipe>
+  <home-category-preview
+    *ngFor="let category of categories"
+    [category]="category"
+  ></home-category-preview>
+  <app-newsletter-form></app-newsletter-form>
+</div>

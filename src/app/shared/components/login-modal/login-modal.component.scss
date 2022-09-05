@@ -1,0 +1,47 @@
+@use "../../../../assets/styles" as *;
+
+.modal {
+  padding: 2rem;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__title {
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    font-family: inherit;
+    padding: 1rem 3rem;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 2rem;
+  }
+
+  &__submit {
+    background-color: $button-primary;
+    color: #fff;
+  }
+
+  &__question {
+    font-size: 1.4rem;
+  }
+
+  &__redirect {
+    background-color: transparent;
+    color: $button-primary;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

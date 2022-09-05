@@ -1,0 +1,19 @@
+.home {
+  &__category {
+    margin: 4rem 0;
+  }
+}
+
+.category {
+  &__name {
+    font-size: 3rem;
+  }
+
+  &__recipes {
+    display: flex;
+    justify-content: space-between;
+    gap: 12rem;
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
