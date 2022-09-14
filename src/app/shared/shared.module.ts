@@ -9,6 +9,7 @@ import { NewsletterFormComponent } from './components/newsletter-form/newsletter
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { SignupModalComponent } from './components/signup-modal/signup-modal.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { DynamicBackground } from './directives/dynamic-background.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     SignupModalComponent,
     FilterPipe,
     ShortenPipe,
+    DynamicBackground,
   ],
   imports: [CommonModule, RouterModule, MatDialogModule, MatButtonModule],
   exports: [
@@ -27,6 +29,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     SignupModalComponent,
     FilterPipe,
     ShortenPipe,
+    DynamicBackground,
   ],
 })
 export class SharedModule {}

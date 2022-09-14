@@ -18,16 +18,17 @@
 
   &__tag {
     padding: 1rem 3rem;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
     background-color: $background-secondary;
+    font-size: 1.4rem;
     color: $color-primary;
   }
 
   &__details {
+    display: flex;
+    justify-content: space-between;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
-    font-size: 1.8rem;
-    color: $color-primary;
     border-bottom: 1px solid $color-secondary;
   }
 
@@ -38,7 +39,7 @@
   &__link {
     display: flex;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
     margin-right: 3rem;
     font-size: 1.8rem;
     color: $color-primary;
@@ -95,5 +96,20 @@
 
   &__instructions {
     font-size: 1.6rem;
+  }
+}
+
+.details {
+  &__text {
+    font-size: 1.8rem;
+    color: $color-primary;
+  }
+
+  &__add-to-fav {
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
   }
 }
