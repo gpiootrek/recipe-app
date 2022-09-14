@@ -3,7 +3,26 @@
     <h2 class="recipe__name">{{ recipe.name }}</h2>
     <div *ngFor="let tag of recipe.tags" class="recipe__tag">{{ tag }}</div>
   </header>
-  <p class="recipe__details">{{ recipe.category }} | {{ recipe.area }}</p>
+  <div class="recipe__details">
+    <p class="details__text">{{ recipe.category }} | {{ recipe.area }}</p>
+    <ng-container *ngIf="(isFavorite$ | async) !== -1; else notFavorite">
+      <button
+        class="details__add-to-fav"
+        (click)="removeFromFavorites(recipe.id)"
+      >
+        <img
+          src="../../../assets/img/heart-filled.svg"
+          width="24"
+          dynamicBackground
+        />
+      </button>
+    </ng-container>
+    <ng-template #notFavorite>
+      <button class="details__add-to-fav" (click)="addToFavorites(recipe.id)">
+        <img src="../../../assets/img/heart.svg" width="24" dynamicBackground />
+      </button>
+    </ng-template>
+  </div>
   <p class="recipe__description">
     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt iure ut
     autem quos quasi voluptates suscipit corporis inventore, error ab.
@@ -12,7 +31,12 @@
     <img src="{{ recipe.thumbUrl }}" alt="" class="recipe__image" />
   </div>
   <div class="recipe__links-container">
-    <a *ngIf="recipe.source" href="{{ recipe.source }}" target="_blank" class="recipe__link">
+    <a
+      *ngIf="recipe.source"
+      href="{{ recipe.source }}"
+      target="_blank"
+      class="recipe__link"
+    >
       <img
         src="../../../assets/img/internet.svg"
         alt=""
@@ -21,7 +45,12 @@
       />
       Source
     </a>
-    <a *ngIf="recipe.youtubeUrl" href="{{ recipe.youtubeUrl }}" target="_blank" class="recipe__link">
+    <a
+      *ngIf="recipe.youtubeUrl"
+      href="{{ recipe.youtubeUrl }}"
+      target="_blank"
+      class="recipe__link"
+    >
       <img
         src="../../../assets/img/youtube.svg"
         alt=""

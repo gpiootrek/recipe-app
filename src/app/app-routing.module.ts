@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RecipesComponent } from './modules/recipes/recipes.component';
 import { RecipesAddComponent } from './modules/recipes/components/recipes-add/recipes-add.component';
+import { SavedComponent } from './modules/saved/saved.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'recipes/add',
     component: RecipesAddComponent,
+  },
+  {
+    path: 'saved',
+    component: SavedComponent,
   },
 ];
 

@@ -17,6 +17,11 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AuthService } from './core/services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipesModule } from './modules/recipes/recipes.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers } from './core/store';
+import { SavedModule } from './modules/saved/saved.module';
+import { RecipesEffects } from './core/store/recipes.effects';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -28,10 +33,13 @@ import { RecipesModule } from './modules/recipes/recipes.module';
     RecipeModule,
     CategoriesModule,
     RecipesModule,
+    SavedModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     BrowserAnimationsModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([RecipesEffects]),
   ],
   providers: [
     {
