@@ -1,5 +1,5 @@
 <div *ngIf="recipe$ | async as recipe" class="card">
-  <a href="/recipe/{{ recipe.id }}" class="card__content">
+  <a routerLink="/recipe/{{ recipe.id }}" class="card__content">
     <img src="{{recipe.thumbUrl}}" alt="{{recipe.name}}" width="64" class="card__thumb">
   </a>
   <p class="card__name">{{ recipe.name }}</p>

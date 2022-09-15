@@ -15,8 +15,6 @@ export function RecipesReducer(
   switch (action.type) {
     case FAV_ACTIONS.FETCH_FAVORITES:
       if (localStorage.getItem('saved')) {
-        console.log('fetching favorites..');
-        console.log(localStorage.getItem('saved'));
         const fetchedState = {
           favorites: JSON.parse(localStorage.getItem('saved')!),
         };

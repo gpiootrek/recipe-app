@@ -1,5 +1,9 @@
 import { Category } from './../../../../core/models/category';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Meal } from 'src/app/core/models/meal';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 

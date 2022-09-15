@@ -1,3 +1,4 @@
+import { HomeRoutingModule } from './home-routing.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,11 +9,7 @@ import { CategoryPreviewComponent } from './components/category-preview/category
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    MainRecipeComponent,
-    CategoryPreviewComponent,
-  ],
-  imports: [CommonModule, RouterModule, SharedModule],
+  declarations: [HomeComponent, MainRecipeComponent, CategoryPreviewComponent],
+  imports: [CommonModule, RouterModule, SharedModule, HomeRoutingModule],
 })
 export class HomeModule {}

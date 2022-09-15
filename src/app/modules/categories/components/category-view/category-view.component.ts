@@ -1,5 +1,5 @@
 import { Meal } from 'src/app/core/models/meal';
-import { Category } from './../../../../core/models/category';
+import { Category } from '../../../../core/models/category';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';

@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CategoriesRoutingModule } from './categories-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CategoryCardComponent,
     CategoryViewComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule],
-  exports: [CategoryViewComponent],
+  imports: [CommonModule, RouterModule, SharedModule, CategoriesRoutingModule],
 })
 export class CategoriesModule {}
