@@ -1,32 +1,31 @@
-import { CategoryViewComponent } from './modules/categories/components/category-view/category-view.component';
-import { CategoriesComponent } from './modules/categories/categories.component';
-import { RecipeComponent } from './modules/recipe/recipe.component';
-import { HomeComponent } from './modules/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './modules/profile/profile.component';
-import { RecipesComponent } from './modules/recipes/recipes.component';
-import { RecipesAddComponent } from './modules/recipes/components/recipes-add/recipes-add.component';
-import { SavedComponent } from './modules/saved/saved.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
-  { path: 'recipe/:id', component: RecipeComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'categories/:name', component: CategoryViewComponent },
   { path: 'profile', component: ProfileComponent },
   {
-    path: 'recipes',
-    component: RecipesComponent,
+    path: 'recipe',
+    loadChildren: () =>
+      import('./modules/recipe/recipe.module').then((m) => m.RecipeModule),
   },
   {
-    path: 'recipes/add',
-    component: RecipesAddComponent,
+    path: 'categories',
+    loadChildren: () =>
+      import('./modules/categories/categories.module').then(
+        (m) => m.CategoriesModule
+      ),
+  },
+  {
+    path: 'recipes',
+    loadChildren: () =>
+      import('./modules/recipes/recipes.module').then((m) => m.RecipesModule),
   },
   {
     path: 'saved',
-    component: SavedComponent,
+    loadChildren: () =>
+      import('./modules/saved/saved.module').then((m) => m.SavedModule),
   },
 ];
 

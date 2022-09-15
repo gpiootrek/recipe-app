@@ -1,6 +1,11 @@
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from './../../core/models/user';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -8,6 +13,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
   @Input() user!: User;
