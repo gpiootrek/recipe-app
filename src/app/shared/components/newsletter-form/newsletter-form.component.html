@@ -1,4 +1,8 @@
-<form action="" class="newsletter-form">
+<form
+  action=""
+  class="newsletter-form"
+  (submit)="onSubmit($event, emailInput)"
+>
   <h2 class="newsletter-form__heading">Deliciousness to your inbox</h2>
   <p class="newsletter-form__text">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum,
@@ -9,7 +13,10 @@
       type="email"
       placeholder="Email Address"
       class="newsletter-form__input"
+      required
+      #emailInput
     />
     <button class="newsletter-form__submit">Join</button>
+    <p class="newsletter-form__invalid" *ngIf="!isValid">Invalid email format.</p>
   </div>
 </form>

@@ -25,6 +25,7 @@
   }
 
   &__group {
+    position: relative;
     width: 40rem;
     display: flex;
     background-color: #fff;
@@ -49,5 +50,14 @@
     text-transform: uppercase;
     color: #fff;
     cursor: pointer;
+  }
+
+  &__invalid {
+    position: absolute;
+    bottom: -3rem;
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #c20404;
   }
 }
