@@ -1,15 +1,33 @@
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
 import { Component, OnInit } from '@angular/core';
+import { validateEmail } from '../../helpers/form.helpers';
 
 @Component({
   selector: 'app-newsletter-form',
   templateUrl: './newsletter-form.component.html',
-  styleUrls: ['./newsletter-form.component.scss']
+  styleUrls: ['./newsletter-form.component.scss'],
 })
 export class NewsletterFormComponent implements OnInit {
+  isValid: boolean = true;
+  subscribersCollection: AngularFirestoreCollection;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private afs: AngularFirestore) {
+    this.subscribersCollection = afs.collection('subscribers');
   }
 
+  ngOnInit(): void {}
+
+  onSubmit(e: Event, emailInput: HTMLInputElement) {
+    e.preventDefault();
+    if (validateEmail(emailInput.value)) {
+      this.subscribersCollection.add({ email: emailInput.value });
+      this.isValid = true;
+      emailInput.value = '';
+    } else {
+      this.isValid = false;
+    }
+  }
 }

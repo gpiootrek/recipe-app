@@ -49,6 +49,16 @@
           #userPassword
         />
       </label>
+      <ng-container *ngIf="isSubscribing$ | async; else notSubscribing">
+        <button class="profile__button" (click)="onUnsubscribe()">
+          Unsubscribe
+        </button>
+      </ng-container>
+      <ng-template #notSubscribing>
+        <button class="profile__button" (click)="onSubscribe()">
+          Subscribe
+        </button>
+      </ng-template>
     </div>
   </div>
 </section>
