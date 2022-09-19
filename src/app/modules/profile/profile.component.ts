@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { map, find, tap, filter } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from './../../core/models/user';
@@ -11,8 +11,6 @@ import {
 } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CommonModule } from '@angular/common';
-import { devOnlyGuardedExpression } from '@angular/compiler';
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -37,7 +35,7 @@ export class ProfileComponent implements OnInit {
         map((val) => {
           return val.map((doc: any) => doc.email);
         }),
-        find((emails: any) => {
+        map((emails: any) => {
           return (
             emails.findIndex((email: string) => email === this.user.email) !==
             -1
@@ -67,10 +65,25 @@ export class ProfileComponent implements OnInit {
   }
 
   onUnsubscribe() {
-    // this.afs
-    //   .collection('subscribers')
-    //   .valueChanges()
-    //   .pipe(filter((doc: any) => doc.email !== this.user.email))
-    //   .subscribe();
+    this.afs
+      .collection('subscribers')
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        take(1),
+        map((docs: any) => {
+          let id = null;
+          docs.forEach((doc: any) => {
+            if (doc.email === this.user.email) {
+              id = doc.id;
+            }
+          });
+          return id;
+        })
+      )
+      .subscribe((docId: number | null) => {
+        if (docId) {
+          this.afs.doc(`subscribers/${docId}`).delete();
+        }
+      });
   }
 }
