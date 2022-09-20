@@ -1,0 +1,9 @@
+<h2 class="recipes__heading">New Recipes</h2>
+<div class="recipes__container">
+  <app-meal-card
+    class="recipes__card"
+    *ngFor="let meal of meals$ | async"
+    [meal]="meal"
+  ></app-meal-card>
+  <a class="recipes__add" routerLink="../add"> + Add recipe </a>
+</div>
