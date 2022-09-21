@@ -1,0 +1,7 @@
+<section class="categories">
+  <h2 class="categories__heading">Categories</h2>
+  <categories-category-card
+    *ngFor="let category of categories$ | async"
+    [category]="category"
+  ></categories-category-card>
+</section>

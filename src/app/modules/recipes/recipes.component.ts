@@ -1,9 +1,7 @@
 import { UsersRecipeService } from 'src/app/core/services/users-recipe.service';
-import { Recipe } from './../../core/models/recipe';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Component, OnInit } from '@angular/core';
 import { Meal } from 'src/app/core/models/meal';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipes',
