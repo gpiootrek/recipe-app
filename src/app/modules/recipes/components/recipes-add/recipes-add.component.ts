@@ -1,12 +1,11 @@
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Category } from './../../../../core/models/category';
-import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  Validators,
-  FormArray,
-  FormControl,
-} from '@angular/forms';
+  validateYoutubeUrl,
+  validateUrl,
+} from './../../../../shared/helpers/form.helpers';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { CATEGORIES } from 'src/app/core/constants/categories';
 
 @Component({
   selector: 'recipes-add',
@@ -14,22 +13,8 @@ import {
   styleUrls: ['./recipes-add.component.scss'],
 })
 export class RecipesAddComponent implements OnInit {
-  categories: Category[] = [
-    'Breakfast',
-    'Beef',
-    'Chicken',
-    'Dessert',
-    'Goat',
-    'Lamb',
-    'Miscellaneous',
-    'Pasta',
-    'Pork',
-    'Seafood',
-    'Side',
-    'Starter',
-    'Vegan',
-    'Vegetarian',
-  ];
+  categories = CATEGORIES;
+  enteredTags: Array<string> = [];
 
   recipeForm = this.fb.group({
     name: ['', Validators.required],
@@ -40,12 +25,12 @@ export class RecipesAddComponent implements OnInit {
         measure: ['', Validators.required],
       }),
     ]),
-    youtubeUrl: ['', this.validYoutubeUrl.bind(this)],
+    youtubeUrl: ['', validateYoutubeUrl.bind(this)],
     tags: [''],
-    thumbUrl: [''],
+    thumbUrl: ['', validateUrl.bind(this)],
     instructions: ['', Validators.required],
     area: [''],
-    source: [''],
+    source: ['', validateUrl.bind(this)],
   });
 
   constructor(private fb: FormBuilder, private afs: AngularFirestore) {}
@@ -54,6 +39,14 @@ export class RecipesAddComponent implements OnInit {
 
   get ingredients() {
     return this.recipeForm.get('ingredients') as FormArray;
+  }
+
+  onTagInput(event: KeyboardEvent) {
+    if (event.key === ',') {
+      let tagInput = this.recipeForm.get('tags')?.value!;
+      this.enteredTags.push(tagInput?.slice(0, tagInput.length - 1));
+      this.recipeForm.get('tags')?.reset();
+    }
   }
 
   addIngredient() {
@@ -65,23 +58,21 @@ export class RecipesAddComponent implements OnInit {
     );
   }
 
+  removeTag(tagToRemove: string) {
+    this.enteredTags = this.enteredTags.filter((tag) => tag !== tagToRemove);
+  }
+
   onSubmit() {
+    const formValue = { ...this.recipeForm.value, tags: this.enteredTags };
+
     this.afs
       .collection('recipes')
-      .add(this.recipeForm.value)
+      .add(formValue)
       .then((res) => {
         console.log('Added successfully', res);
       });
+
     this.recipeForm.reset();
-  }
-
-  // TODO: make youtube url not required and figure out how this validator is working
-  validYoutubeUrl(control: FormControl) {
-    const regex =
-      /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/;
-
-    if (!regex.test(control.value)) return { isYoutubeUrlValid: true };
-
-    return null;
+    this.enteredTags = [];
   }
 }

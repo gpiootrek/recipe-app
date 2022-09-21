@@ -16,7 +16,6 @@
   }
 
   &__button {
-    align-self: flex-start;
     padding: 1rem 3rem;
     margin-left: 2rem;
     border: 0;
@@ -31,6 +30,10 @@
       background-color: #fff;
       border: 1px solid #000;
       color: #000;
+    }
+
+    &--subscription {
+      align-self: flex-start;
     }
   }
 }

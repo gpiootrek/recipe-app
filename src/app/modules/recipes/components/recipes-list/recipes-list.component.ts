@@ -4,13 +4,13 @@ import { Meal } from 'src/app/core/models/meal';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-recipes',
-  templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.scss'],
+  selector: 'recipes-list',
+  templateUrl: './recipes-list.component.html',
+  styleUrls: ['./recipes-list.component.scss'],
 })
-export class RecipesComponent implements OnInit {
+export class RecipesListComponent implements OnInit {
   meals$: Observable<Meal[]>;
-  
+
   constructor(private usersRecipeService: UsersRecipeService) {
     this.meals$ = this.usersRecipeService.getRecipes();
   }

@@ -50,12 +50,18 @@
         />
       </label>
       <ng-container *ngIf="isSubscribing$ | async; else notSubscribing">
-        <button class="profile__button" (click)="onUnsubscribe()">
+        <button
+          class="profile__button profile__button--subscription"
+          (click)="onUnsubscribe()"
+        >
           Unsubscribe
         </button>
       </ng-container>
       <ng-template #notSubscribing>
-        <button class="profile__button" (click)="onSubscribe()">
+        <button
+          class="profile__button profile__button--subscription"
+          (click)="onSubscribe()"
+        >
           Subscribe
         </button>
       </ng-template>

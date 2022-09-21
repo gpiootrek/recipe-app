@@ -1,0 +1,28 @@
+.recipes {
+  &__heading {
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 2.8rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 0;
+  }
+
+  &__card {
+    max-width: 23%;
+  }
+
+  &__add {
+    padding: 1rem 3rem;
+    border-radius: 0.4rem;
+    background-color: #17b724;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    color: #fff;
+  }
+}

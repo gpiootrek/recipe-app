@@ -1,8 +1,6 @@
 @use "../../../../../assets/styles" as *;
 
 .add-recipe {
-  padding: 0 10%;
-
   &__header {
     width: 100%;
     display: flex;
@@ -106,5 +104,30 @@
     &:focus {
       outline-color: #000;
     }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  &__tag {
+    padding: 0.6rem 1.5rem;
+    margin-right: 1rem;
+    border-radius: .8rem;
+    background: $button-primary;
+    color: #fff;
+    font-size: 1.6rem;
+  }
+
+  &__remove-tag {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
   }
 }
