@@ -7,9 +7,9 @@
     <a routerLink="/saved" class="header__link" aria-label="Go to Saved">Saved</a>
   </nav>
   <div class="header__buttons-container">
-    <button class="header__button" aria-label="Search">
+    <a routerLink="/search" class="header__button" aria-label="Search" >
       <img src="../../../../assets/img/search.svg" alt="" width="30" />
-    </button>
+    </a>
     <button class="header__button" (click)="openDialog()" *ngIf="!isLogged" aria-label="Login">
       <img src="../../../../assets/img/profile.svg" alt="" width="30" />
     </button>

@@ -1,10 +1,10 @@
 import { Category } from './category';
 
 export interface RecipeRes {
-  idMeal: string;
-  strMeal: string;
+  idMeal?: string;
+  strMeal?: string;
   strDrinkAlternate?: string;
-  strCategory: Category;
+  strCategory?: Category;
   strArea?: string;
   strInstructions?: string;
   strMealThumb?: string;
