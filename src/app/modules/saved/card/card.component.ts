@@ -16,15 +16,11 @@ import { RecipeService } from 'src/app/core/services/recipe.service';
 })
 export class CardComponent implements OnInit {
   recipe$!: Observable<Recipe>;
-  @Input() id!: number;
+  @Input() id!: string;
 
   constructor(private recipeService: RecipeService) {}
 
-  getRecipe(): Observable<Recipe> {
-    return this.recipeService.getRecipeById(String(this.id));
-  }
-
   ngOnInit(): void {
-    this.recipe$ = this.getRecipe();
+    this.recipe$ = this.recipeService.getRecipeById(this.id);
   }
 }

@@ -34,7 +34,7 @@ export class RecipeComponent implements OnInit {
         .select((state: any) => state.recipes)
         .pipe(
           map((recipes) =>
-            recipes.favorites.findIndex((favId: number) => favId === +this.id)
+            recipes.favorites.findIndex((favId: string) => favId === this.id)
           )
         );
     });
@@ -46,11 +46,11 @@ export class RecipeComponent implements OnInit {
     return this.recipeService.getRecipeById(this.id);
   }
 
-  addToFavorites(recipeId: number) {
-    this.store.dispatch(new AddToFavorites(recipeId));
+  addToFavorites() {
+    this.store.dispatch(new AddToFavorites(this.id));
   }
 
-  removeFromFavorites(recipeId: number) {
-    this.store.dispatch(new RemoveFromFavorites(recipeId));
+  removeFromFavorites() {
+    this.store.dispatch(new RemoveFromFavorites(this.id));
   }
 }

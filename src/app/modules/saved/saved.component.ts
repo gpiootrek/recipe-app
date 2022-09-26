@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
-import { FetchFavorites } from 'src/app/core/store/recipes.actions';
 
 @Component({
   selector: 'app-saved',
@@ -10,7 +9,8 @@ import { FetchFavorites } from 'src/app/core/store/recipes.actions';
   styleUrls: ['./saved.component.scss'],
 })
 export class SavedComponent implements OnInit {
-  favs$: Observable<number[]>;
+  favs$: Observable<string[]>;
+
   constructor(private store: Store<AppState>) {
     this.favs$ = store
       .select((state: any) => state.recipes)

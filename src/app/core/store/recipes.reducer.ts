@@ -1,7 +1,7 @@
 import { RecipesActions, FAV_ACTIONS } from './recipes.actions';
 
 export interface RecipesState {
-  favorites: number[];
+  favorites: string[];
 }
 
 const initialState: RecipesState = {
@@ -29,7 +29,7 @@ export function RecipesReducer(
       return newState;
     case FAV_ACTIONS.REMOVE_FROM_FAVORITES:
       const updatedState = {
-        favorites: state.favorites.filter((id) => id !== +action.payload),
+        favorites: state.favorites.filter((id) => id !== action.payload),
       };
       return updatedState;
     default:

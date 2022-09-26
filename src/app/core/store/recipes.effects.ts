@@ -34,7 +34,7 @@ export class RecipesEffects {
         switchMap((data: RemoveFromFavorites) => {
           const saved = JSON.parse(localStorage.getItem('saved')!);
           const filteredSaved = saved.filter(
-            (id: number) => id !== data.payload
+            (id: string) => id !== data.payload
           );
           localStorage.setItem('saved', JSON.stringify(filteredSaved));
 

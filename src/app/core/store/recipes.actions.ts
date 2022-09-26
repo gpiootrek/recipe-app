@@ -14,13 +14,13 @@ export class FetchFavorites implements Action {
 export class AddToFavorites implements Action {
   readonly type = FAV_ACTIONS.ADD_TO_FAVORITES;
 
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 
 export class RemoveFromFavorites implements Action {
   readonly type = FAV_ACTIONS.REMOVE_FROM_FAVORITES;
 
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 
 export type RecipesActions =
