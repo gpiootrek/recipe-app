@@ -1,6 +1,5 @@
 # Backlog
 
-- **fix:** adding users' recipes to favorites
 - **fix:** blank tags
 - **fix:** refactor to async pipe - categories preview in home and recommended in recipe
 - **feat:** protect profile route if user not logged in
