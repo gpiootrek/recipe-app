@@ -9,17 +9,28 @@
       <button
         class="details__add-to-fav"
         (click)="removeFromFavorites()"
+        aria-label="Remove to Favorites"
       >
         <img
           src="../../../assets/img/heart-filled.svg"
+          alt=""
           width="24"
           dynamicBackground
         />
       </button>
     </ng-container>
     <ng-template #notFavorite>
-      <button class="details__add-to-fav" (click)="addToFavorites()">
-        <img src="../../../assets/img/heart.svg" width="24" dynamicBackground />
+      <button
+        class="details__add-to-fav"
+        (click)="addToFavorites()"
+        aria-label="Add to Favorites"
+      >
+        <img
+          src="../../../assets/img/heart.svg"
+          alt=""
+          width="24"
+          dynamicBackground
+        />
       </button>
     </ng-template>
   </div>

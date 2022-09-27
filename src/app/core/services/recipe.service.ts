@@ -1,3 +1,4 @@
+import { RECIPE_BY_NAME_URL } from './../constants/api-urls';
 import { UsersRecipeService } from './users-recipe.service';
 import { RecipeRes } from './../models/recipe-res';
 import { CategoriesResponse } from './../models/categories-response';
@@ -47,6 +48,22 @@ export class RecipeService {
         };
       })
     );
+  }
+
+  getRecipesByName(name: string): Observable<Meal[]> {
+    return this.http
+      .get<Response<RecipeRes[]>>(`${RECIPE_BY_NAME_URL}${name}`)
+      .pipe(
+        map((res: Response<RecipeRes[]>) => {
+          return res.meals.map((meal: any) => {
+            return {
+              strMeal: meal.strMeal,
+              strMealThumb: meal.strMealThumb,
+              idMeal: meal.idMeal,
+            };
+          });
+        }),
+      );
   }
 
   getRecipeById(id: string): Observable<Recipe> {

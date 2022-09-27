@@ -1,7 +1,6 @@
 .recipe-card {
-  flex: 1;
   position: relative;
-
+  
   &__thumb {
     width: 100%;
     border-radius: 1rem;
@@ -24,7 +23,7 @@
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
     &:hover {
-      transform: translateX(.5rem);
+      transform: translateX(0.5rem);
     }
   }
 }

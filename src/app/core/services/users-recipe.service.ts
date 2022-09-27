@@ -30,4 +30,8 @@ export class UsersRecipeService {
   getRecipe(id: string): Observable<any> {
     return this.afs.collection('recipes').doc(id).valueChanges();
   }
+
+  getRecipeByName(name: string): Observable<any> {
+    return this.afs.collection('recipes').valueChanges();
+  }
 }

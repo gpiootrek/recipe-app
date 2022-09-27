@@ -1,7 +1,11 @@
-<section class="categories">
-  <h2 class="categories__heading">Categories</h2>
-  <categories-category-card
-    *ngFor="let category of categories$ | async"
-    [category]="category"
-  ></categories-category-card>
+<section class="categories content">
+  <header class="content__header">
+    <h2 class="content__heading">Categories</h2>
+  </header>
+  <div class="content__container">
+    <categories-category-card
+      *ngFor="let category of categories$ | async"
+      [category]="category"
+    ></categories-category-card>
+  </div>
 </section>
