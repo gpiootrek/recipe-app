@@ -6,7 +6,6 @@ import { AppState } from 'src/app/core/store';
 @Component({
   selector: 'app-saved',
   templateUrl: './saved.component.html',
-  styleUrls: ['./saved.component.scss'],
 })
 export class SavedComponent implements OnInit {
   favs$: Observable<string[]>;

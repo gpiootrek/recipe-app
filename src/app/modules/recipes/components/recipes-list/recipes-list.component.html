@@ -1,5 +1,7 @@
-<h2 class="recipes__heading">New Recipes</h2>
-<div class="recipes__container">
+<header class="content__header">
+  <h2 class="content__heading">New Recipes</h2>
+</header>
+<div class="content__container recipes__container">
   <app-meal-card
     class="recipes__card"
     *ngFor="let meal of meals$ | async"

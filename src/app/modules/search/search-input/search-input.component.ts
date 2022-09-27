@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -16,16 +22,18 @@ import { RecipeService } from 'src/app/core/services/recipe.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchInputComponent implements OnInit {
-  searchResults$!: Observable<Meal[]>;
   private searchInput = new Subject<string>();
+  @Output() searchResults = new EventEmitter<Observable<Meal[]>>();
 
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
-    this.searchResults$ = this.searchInput.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-      switchMap((input: string) => this.recipeService.getRecipesByName(input))
+    this.searchResults.emit(
+      this.searchInput.pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap((input: string) => this.recipeService.getRecipesByName(input))
+      )
     );
   }
 

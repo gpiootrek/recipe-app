@@ -1,13 +1,11 @@
-<section class="category-view">
-  <h2 class="category-view__heading">{{ category | titlecase }}</h2>
+<section class="category-view content">
+  <header class="content__header">
+    <h2 class="content__heading">{{ category | titlecase }}</h2>
+  </header>
   <div class="category-view__container">
-    <a
-      class="category-view__card"
+    <app-meal-card
       *ngFor="let meal of meals$ | async"
-      routerLink="/recipe/{{ meal.idMeal }}"
-    >
-      <img src="{{ meal.strMealThumb }}" alt="" class="category-view__image" />
-      <p class="category-view__name">{{ meal.strMeal! | shorten:20 }}</p>
-    </a>
+      [meal]="meal"
+    ></app-meal-card>
   </div>
 </section>

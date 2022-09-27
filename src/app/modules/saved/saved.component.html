@@ -1,8 +1,8 @@
-<div class="saved">
-  <header class="saved__header">
-    <h2 class="saved__heading">Saved Recipes</h2>
+<div class="saved content">
+  <header class="content__header">
+    <h2 class="content__heading">Saved Recipes</h2>
   </header>
-  <div class="saved__content">
+  <div class="content__container">
     <saved-card *ngFor="let id of favs$ | async" [id]="id"></saved-card>
   </div>
 </div>

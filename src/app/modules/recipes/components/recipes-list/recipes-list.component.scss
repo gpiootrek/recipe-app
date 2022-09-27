@@ -1,15 +1,8 @@
 .recipes {
-  &__heading {
-    padding: 1rem 0;
-    border-bottom: 1px solid #ddd;
-    font-size: 2.8rem;
-  }
 
   &__container {
-    display: flex;
     align-items: center;
-    gap: 2rem;
-    padding: 3rem 0;
+    justify-content: flex-start;
   }
 
   &__card {
