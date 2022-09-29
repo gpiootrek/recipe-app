@@ -19,6 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './core/store';
 import { RecipesEffects } from './core/store/recipes.effects';
+import { AuthGuardService } from './core/services/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -41,6 +42,7 @@ import { RecipesEffects } from './core/store/recipes.effects';
       useValue: environment.firebase,
     },
     AuthService,
+    AuthGuardService,
   ],
   bootstrap: [AppComponent],
 })
