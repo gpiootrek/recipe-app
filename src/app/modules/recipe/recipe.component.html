@@ -1,4 +1,4 @@
-<div *ngIf="recipe | async as recipe" class="recipe">
+<div *ngIf="recipe$ | async as recipe" class="recipe">
   <header class="recipe__header">
     <h2 class="recipe__name">{{ recipe.name }}</h2>
     <div *ngFor="let tag of recipe.tags" class="recipe__tag">{{ tag }}</div>

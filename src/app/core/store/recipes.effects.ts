@@ -1,3 +1,4 @@
+import { NotificationsService } from 'src/app/core/services/notifications.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, switchMap } from 'rxjs';
@@ -9,6 +10,11 @@ import {
 
 @Injectable()
 export class RecipesEffects {
+  constructor(
+    private actions$: Actions,
+    private notificationsService: NotificationsService
+  ) {}
+
   addToFavs$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -21,6 +27,12 @@ export class RecipesEffects {
           } else {
             localStorage.setItem('saved', JSON.stringify([data.payload]));
           }
+
+          this.notificationsService.showNotification(
+            `Added recipe with id ${data.payload} to favorites`,
+            'Close'
+          );
+
           return of(true);
         })
       ),
@@ -38,11 +50,14 @@ export class RecipesEffects {
           );
           localStorage.setItem('saved', JSON.stringify(filteredSaved));
 
+          this.notificationsService.showNotification(
+            `Removed recipe with id ${data.payload} from favorites`,
+            'Close'
+          );
+
           return of(true);
         })
       ),
     { dispatch: false }
   );
-
-  constructor(private actions$: Actions) {}
 }

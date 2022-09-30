@@ -1,4 +1,4 @@
-import { User } from './../models/user';
+import { NotificationsService } from './notifications.service';
 import { Injectable, NgZone } from '@angular/core';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -12,7 +12,8 @@ export class AuthService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    public notificationsService: NotificationsService
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -33,9 +34,10 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user?.providerData[0]);
+        this.notificationsService.showNotification(`Logged in`, 'Close');
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.notificationsService.showNotification(error.message, 'Close');
       });
   }
 
@@ -45,9 +47,10 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user?.providerData[0], name);
+        this.notificationsService.showNotification(`Signed up`, 'Close');
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.notificationsService.showNotification(error.message, 'Close');
       });
   }
 
@@ -114,6 +117,7 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['home']);
+      this.notificationsService.showNotification(`Signed out`, 'Close');
     });
   }
 }

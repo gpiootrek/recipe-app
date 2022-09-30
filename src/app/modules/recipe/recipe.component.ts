@@ -9,6 +9,7 @@ import {
   RemoveFromFavorites,
 } from 'src/app/core/store/recipes.actions';
 import { AppState } from 'src/app/core/store';
+import { NotificationsService } from 'src/app/core/services/notifications.service';
 
 @Component({
   selector: 'app-recipe',
@@ -16,7 +17,7 @@ import { AppState } from 'src/app/core/store';
   styleUrls: ['./recipe.component.scss'],
 })
 export class RecipeComponent implements OnInit {
-  recipe!: Observable<Recipe>;
+  recipe$!: Observable<Recipe>;
   id!: string;
   isFavorite$!: Observable<number>;
   helper!: Observable<number[]>;
@@ -28,7 +29,7 @@ export class RecipeComponent implements OnInit {
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      this.recipe = this.getRecipe();
+      this.recipe$ = this.getRecipe();
       window.scrollTo(0, 0);
       this.isFavorite$ = this.store
         .select((state: any) => state.recipes)
