@@ -1,4 +1,5 @@
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +30,7 @@ import { AuthGuardService } from './core/services/auth-guard.service';
     HttpClientModule,
     HomeModule,
     MatDialogModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
