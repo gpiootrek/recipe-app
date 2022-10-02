@@ -25,14 +25,18 @@ export class SearchInputComponent implements OnInit {
   private searchInput = new Subject<string>();
   @Output() searchResults = new EventEmitter<Observable<Meal[]>>();
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private recipeService: RecipeService
+  ) {}
 
   ngOnInit(): void {
     this.searchResults.emit(
       this.searchInput.pipe(
         debounceTime(500),
         distinctUntilChanged(),
-        switchMap((input: string) => this.recipeService.getRecipesByName(input))
+        switchMap((input: string) =>
+          this.recipeService.getRecipesByName(input)
+        ),
       )
     );
   }

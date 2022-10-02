@@ -1,3 +1,4 @@
+import { NotificationsService } from './notifications.service';
 import { RECIPE_BY_NAME_URL } from './../constants/api-urls';
 import { UsersRecipeService } from './users-recipe.service';
 import { RecipeRes } from './../models/recipe-res';
@@ -5,7 +6,7 @@ import { CategoriesResponse } from './../models/categories-response';
 import { Recipe } from 'src/app/core/models/recipe';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { Category } from '../models/category';
 import { Meal } from '../models/meal';
 import { Response } from '../models/response';
@@ -23,7 +24,8 @@ import { CategoryDetails } from '../models/category-details';
 export class RecipeService {
   constructor(
     private http: HttpClient,
-    private usersRecipeService: UsersRecipeService
+    private usersRecipeService: UsersRecipeService,
+    private notificationsService: NotificationsService
   ) {}
 
   getRecipesByCategory(category: Category): Observable<Meal[]> {
@@ -63,6 +65,12 @@ export class RecipeService {
             };
           });
         }),
+        catchError((error) => {
+          this.notificationsService.showNotification(
+            'No recipes with that name.'
+          );
+          return of([]);
+        })
       );
   }
 

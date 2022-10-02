@@ -1,15 +1,9 @@
 .search {
-  padding: 0 10%;
-
   &__results {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 2rem 4rem;
     margin-top: 3rem;
-
-    & * {
-      flex: 1;
-      max-width: 24rem;
-    }
   }
 }

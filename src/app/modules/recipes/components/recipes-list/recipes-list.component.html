@@ -1,11 +1,13 @@
-<header class="content__header">
-  <h2 class="content__heading">New Recipes</h2>
-</header>
-<div class="content__container recipes__container">
-  <app-meal-card
-    class="recipes__card"
-    *ngFor="let meal of meals$ | async"
-    [meal]="meal"
-  ></app-meal-card>
-  <a class="recipes__add" routerLink="../add"> + Add recipe </a>
-</div>
+<section class="recipes content">
+  <header class="content__header">
+    <h2 class="content__heading">New Recipes</h2>
+  </header>
+  <div class="content__container recipes__container">
+    <app-meal-card
+      class="recipes__card"
+      *ngFor="let meal of meals$ | async"
+      [meal]="meal"
+    ></app-meal-card>
+    <a class="recipes__add" routerLink="../add"> + Add recipe </a>
+  </div>
+</section>
