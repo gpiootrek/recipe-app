@@ -21,6 +21,6 @@ export class CategoryPreviewComponent implements OnInit {
   getRecipes() {
     this.recipeService
       .getRecipesByCategory(this.category)
-      .subscribe((data) => (this.meals = data.slice(0, 3)));
+      .subscribe((data) => (this.meals = data.slice(0, 4)));
   }
 }

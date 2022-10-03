@@ -29,8 +29,7 @@ export class RecipesEffects {
           }
 
           this.notificationsService.showNotification(
-            `Added recipe with id ${data.payload} to favorites`,
-            'Close'
+            `Added recipe with id ${data.payload} to favorites`
           );
 
           return of(true);
@@ -51,8 +50,7 @@ export class RecipesEffects {
           localStorage.setItem('saved', JSON.stringify(filteredSaved));
 
           this.notificationsService.showNotification(
-            `Removed recipe with id ${data.payload} from favorites`,
-            'Close'
+            `Removed recipe with id ${data.payload} from favorites`
           );
 
           return of(true);

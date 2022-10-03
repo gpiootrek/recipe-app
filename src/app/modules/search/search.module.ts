@@ -5,9 +5,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchRoutingModule } from './search-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SearchFiltersComponent } from './search-filters/search-filters.component';
 
 @NgModule({
-  declarations: [SearchComponent, SearchInputComponent],
+  declarations: [SearchComponent, SearchInputComponent, SearchFiltersComponent],
   imports: [CommonModule, RouterModule, SearchRoutingModule, SharedModule],
 })
 export class SearchModule {}

@@ -1,0 +1,27 @@
+<form class="search__filters">
+  <select
+    name="category"
+    id="category"
+    class="filters__select"
+    #categoryFilter
+    (change)="applyFilter(categoryFilter.value, 'category')"
+  >
+    <option value="">Filter by category</option>
+    <option *ngFor="let category of categories" value="{{ category }}">
+      {{ category }}
+    </option>
+  </select>
+  <select
+    name="sorting"
+    id="sorting"
+    class="filters__select"
+    #sorting
+    (change)="applyFilter(sorting.value, 'sortby')"
+  >
+    <option value="">Sort by</option>
+    <option value="name-a">Name ascending</option>
+    <option value="name-d">Name descending</option>
+    <option value="category-a">Category ascending</option>
+    <option value="category-d">Category descending</option>
+  </select>
+</form>

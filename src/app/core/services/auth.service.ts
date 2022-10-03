@@ -34,10 +34,10 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user?.providerData[0]);
-        this.notificationsService.showNotification(`Logged in`, 'Close');
+        this.notificationsService.showNotification(`Logged in`);
       })
       .catch((error) => {
-        this.notificationsService.showNotification(error.message, 'Close');
+        this.notificationsService.showNotification(error.message);
       });
   }
 
@@ -47,10 +47,10 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user?.providerData[0], name);
-        this.notificationsService.showNotification(`Signed up`, 'Close');
+        this.notificationsService.showNotification(`Signed up`);
       })
       .catch((error) => {
-        this.notificationsService.showNotification(error.message, 'Close');
+        this.notificationsService.showNotification(error.message);
       });
   }
 
@@ -117,7 +117,7 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['home']);
-      this.notificationsService.showNotification(`Signed out`, 'Close');
+      this.notificationsService.showNotification(`Signed out`);
     });
   }
 }

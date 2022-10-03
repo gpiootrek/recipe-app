@@ -1,5 +1,6 @@
-<div class="search">
+<div class="search content">
   <search-input (searchResults)="getMeals($event)"></search-input>
+  <search-filters></search-filters>
   <div class="search__results">
     <app-meal-card
       *ngFor="let meal of meals$ | async"

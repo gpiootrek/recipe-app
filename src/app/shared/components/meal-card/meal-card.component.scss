@@ -1,6 +1,9 @@
 .recipe-card {
   position: relative;
-  
+  flex: 1;
+  min-width: 23%;
+  max-width: 24rem;
+
   &__thumb {
     width: 100%;
     border-radius: 1rem;
