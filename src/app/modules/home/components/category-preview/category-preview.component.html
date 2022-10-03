@@ -2,7 +2,7 @@
   <h2 class="category__name">{{ category | titlecase }}</h2>
   <div class="category__recipes">
     <app-meal-card
-      *ngFor="let meal of meals"
+      *ngFor="let meal of meals$ | async"
       [meal]="meal"
     ></app-meal-card>
   </div>

@@ -28,10 +28,20 @@ export class RecipeService {
     private notificationsService: NotificationsService
   ) {}
 
-  getRecipesByCategory(category: Category): Observable<Meal[]> {
+  getRecipesByCategory(
+    category: Category,
+    numOfRecipes?: number
+  ): Observable<Meal[]> {
     return this.http
       .get<Response<Meal>>(`${RECIPES_BY_CATEGORY_URL}${category}`)
-      .pipe(map((res: Response<Meal>) => res.meals));
+      .pipe(
+        map((res: Response<Meal>) => {
+          if (numOfRecipes) {
+            return res.meals.slice(0, numOfRecipes);
+          }
+          return res.meals;
+        })
+      );
   }
 
   getCategories(): Observable<CategoryDetails[]> {
