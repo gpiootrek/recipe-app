@@ -2,7 +2,7 @@ import { Meal } from 'src/app/core/models/meal';
 import { Category } from '../../../../core/models/category';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   templateUrl: './category-view.component.html',
   styleUrls: ['./category-view.component.scss'],
 })
-export class CategoryViewComponent implements OnInit {
+export class CategoryViewComponent {
   meals$: Observable<Meal[]>;
   category!: Category;
 
@@ -24,6 +24,4 @@ export class CategoryViewComponent implements OnInit {
     this.meals$ = this.recipeService.getRecipesByCategory(this.category);
   }
 
-  ngOnInit(): void {
-  }
 }

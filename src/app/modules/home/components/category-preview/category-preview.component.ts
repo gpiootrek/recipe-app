@@ -2,6 +2,7 @@ import { Meal } from 'src/app/core/models/meal';
 import { Category } from './../../../../core/models/category';
 import { RecipeService } from './../../../../core/services/recipe.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'home-category-preview',
@@ -10,17 +11,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CategoryPreviewComponent implements OnInit {
   @Input() category!: Category;
-  meals: Meal[] = [];
+  meals$!: Observable<Meal[]>;
 
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
-    this.getRecipes();
-  }
-
-  getRecipes() {
-    this.recipeService
-      .getRecipesByCategory(this.category)
-      .subscribe((data) => (this.meals = data.slice(0, 4)));
+    this.meals$ = this.recipeService.getRecipesByCategory(this.category, 4);
   }
 }
