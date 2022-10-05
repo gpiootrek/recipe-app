@@ -1,3 +1,4 @@
+import { NotificationsService } from 'src/app/core/services/notifications.service';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -14,7 +15,10 @@ export class NewsletterFormComponent implements OnInit {
   isValid: boolean = true;
   subscribersCollection: AngularFirestoreCollection;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(
+    private afs: AngularFirestore,
+    private notificationsService: NotificationsService
+  ) {
     this.subscribersCollection = afs.collection('subscribers');
   }
 
@@ -23,7 +27,11 @@ export class NewsletterFormComponent implements OnInit {
   onSubmit(e: Event, emailInput: HTMLInputElement) {
     e.preventDefault();
     if (validateEmail(emailInput.value)) {
-      this.subscribersCollection.add({ email: emailInput.value });
+      this.subscribersCollection.add({ email: emailInput.value }).then(() => {
+        this.notificationsService.showNotification(
+          'Subscribed to the newsletter'
+        );
+      });
       this.isValid = true;
       emailInput.value = '';
     } else {

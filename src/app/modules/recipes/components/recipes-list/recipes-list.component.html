@@ -4,7 +4,6 @@
   </header>
   <div class="content__container recipes__container">
     <app-meal-card
-      class="recipes__card"
       *ngFor="let meal of meals$ | async"
       [meal]="meal"
     ></app-meal-card>

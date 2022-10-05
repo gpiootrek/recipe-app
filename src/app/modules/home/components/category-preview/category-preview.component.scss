@@ -1,3 +1,5 @@
+@use "../../../../../assets/styles" as *;
+
 .home {
   &__category {
     margin: 4rem 0;
@@ -10,10 +12,24 @@
   }
 
   &__recipes {
+    position: relative;
     display: flex;
     justify-content: space-between;
-    gap: 12rem;
+    gap: 4rem;
     width: 100%;
     margin: 1rem 0;
+
+    @include respond-to($screen-md) {
+      gap: 2rem;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    & * {
+      @include respond-to($screen-md) {
+        min-width: 16rem;
+        flex: 1;
+      }
+    }
   }
 }

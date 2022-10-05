@@ -2,7 +2,7 @@
   <header class="content__header">
     <h2 class="content__heading">Categories</h2>
   </header>
-  <div class="content__container">
+  <div class="content__container categories__container">
     <categories-category-card
       *ngFor="let category of categories$ | async"
       [category]="category"

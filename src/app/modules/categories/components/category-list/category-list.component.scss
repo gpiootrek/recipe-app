@@ -1,0 +1,16 @@
+@use "../../../../../assets/styles" as *;
+
+.categories {
+  &__container {
+    & * {
+      flex: 1;
+      min-width: 20rem;    
+      max-width: 24rem;
+
+      @include respond-to($screen-md) {
+        flex: 1;
+        max-width: 50%;
+      }
+    }
+  }
+}

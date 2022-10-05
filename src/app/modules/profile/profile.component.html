@@ -49,9 +49,10 @@
           #userPassword
         />
       </label>
+      <h3 class="user__heading">Newsletter</h3>
       <ng-container *ngIf="isSubscribing$ | async; else notSubscribing">
         <button
-          class="profile__button profile__button--subscription"
+          class="profile__button profile__button--secondary profile__button--subscription"
           (click)="onUnsubscribe()"
         >
           Unsubscribe

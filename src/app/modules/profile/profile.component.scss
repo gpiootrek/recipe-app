@@ -28,8 +28,13 @@
     }
 
     &--subscription {
+      margin-left: 0;
       align-self: flex-start;
     }
+  }
+
+  &__user {
+    width: 100%;
   }
 }
 
@@ -50,7 +55,7 @@
   }
 
   &__label {
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     font-size: 1.4rem;
@@ -69,5 +74,13 @@
       outline: 0;
       border-bottom-color: #000;
     }
+  }
+
+  &__heading {
+    width: 100%;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+    font-size: 2.8rem;
   }
 }

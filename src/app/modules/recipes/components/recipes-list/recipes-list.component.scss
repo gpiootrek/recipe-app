@@ -3,10 +3,9 @@
   &__container {
     align-items: center;
     justify-content: flex-start;
-  }
-
-  &__card {
-    max-width: 23%;
+    & * {
+      min-width: 20%;
+    }
   }
 
   &__add {
