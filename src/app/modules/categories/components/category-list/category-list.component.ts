@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoryDetails } from 'src/app/core/models/category-details';
 import { RecipeService } from 'src/app/core/services/recipe.service';
@@ -6,6 +6,8 @@ import { RecipeService } from 'src/app/core/services/recipe.service';
 @Component({
   selector: 'app-categories-list',
   templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryListComponent implements OnInit {
   categories$: Observable<CategoryDetails[]>;

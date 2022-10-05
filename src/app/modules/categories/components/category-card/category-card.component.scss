@@ -1,10 +1,7 @@
 .category-card {
-  flex: 1;
   cursor: pointer;
-
   &__image-container {
-    width: 24rem;
-    height: 24rem;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

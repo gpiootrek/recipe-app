@@ -1,8 +1,12 @@
+@use "../../../../assets/styles" as *;
+
 .recipe-card {
   position: relative;
-  flex: 1;
-  min-width: 23%;
   max-width: 24rem;
+
+  @include respond-to($screen-md) {
+    max-width: 20rem;
+  }
 
   &__thumb {
     width: 100%;
