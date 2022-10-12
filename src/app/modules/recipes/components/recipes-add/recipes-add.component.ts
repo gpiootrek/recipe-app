@@ -1,7 +1,7 @@
 import {
   validateYoutubeUrl,
   validateUrl,
-} from './../../../../shared/helpers/form.helpers';
+} from 'src/app/shared/helpers/form.helpers';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';

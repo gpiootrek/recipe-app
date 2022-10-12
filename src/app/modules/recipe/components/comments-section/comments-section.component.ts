@@ -1,12 +1,8 @@
 import { Observable } from 'rxjs';
-import { AuthService } from './../../../../core/services/auth.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
 import { Component, OnInit } from '@angular/core';
 import { Comment } from 'src/app/core/models/comment';
+import { CommentsService } from './comments.service';
 
 @Component({
   selector: 'recipe-comments-section',
@@ -14,18 +10,15 @@ import { Comment } from 'src/app/core/models/comment';
   styleUrls: ['./comments-section.component.scss'],
 })
 export class CommentsSectionComponent implements OnInit {
-  private commentsCollection: AngularFirestoreCollection<Comment>;
   comments$: Observable<Comment[]>;
   newComment: string = '';
   recipeId!: number;
 
   constructor(
-    private afs: AngularFirestore,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private commentsService: CommentsService
   ) {
-    this.commentsCollection = afs.collection<Comment>('comments');
-    this.comments$ = this.commentsCollection.valueChanges();
+    this.comments$ = this.commentsService.getComments();
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params['id'];
     });
@@ -34,16 +27,9 @@ export class CommentsSectionComponent implements OnInit {
   ngOnInit(): void {}
 
   onAddComment() {
-    if (this.newComment.trim().length === 0) return;
-
-    this.commentsCollection.add({
-      user: this.authService.GetUserData(),
-      text: this.newComment,
-      date: new Date().getTime(),
-      replies: [],
-      likes: 0,
-      recipeId: this.recipeId,
-    });
+    this.commentsService.addComment(this.recipeId, this.newComment);
     this.newComment = '';
   }
+
+  identify = (index: number, item: Comment): number => index;
 }

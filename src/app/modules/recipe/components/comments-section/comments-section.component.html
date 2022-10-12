@@ -15,7 +15,10 @@
   </form>
   <h2 class="comments__heading comments__heading--border-bottom">Comments</h2>
   <recipe-comment
-    *ngFor="let comment of comments$ | async | filter: recipeId:'recipeId'"
+    *ngFor="
+      let comment of comments$ | async | filter: recipeId:'recipeId';
+      trackBy: identify
+    "
     [comment]="comment"
   ></recipe-comment>
 </section>

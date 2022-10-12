@@ -1,0 +1,10 @@
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10% 10%;
+
+  &__heading {
+    font-size: 3rem;
+  }
+}

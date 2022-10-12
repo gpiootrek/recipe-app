@@ -1,6 +1,6 @@
 import { Meal } from 'src/app/core/models/meal';
-import { Category } from './../../../../core/models/category';
-import { RecipeService } from './../../../../core/services/recipe.service';
+import { Category } from 'src/app/core/models/category';
+import { RecipeService } from 'src/app/core/services/recipe.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
