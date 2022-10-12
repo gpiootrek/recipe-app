@@ -114,7 +114,7 @@ export class RecipeService {
             [res.meals[0].strIngredient20, res.meals[0].strMeasure20],
           ],
           youtubeUrl: res.meals[0].strYoutube,
-          tags: res.meals[0].strTags?.split(','),
+          tags: res.meals[0].strTags?.split(',').filter((tag) => tag.length),
           thumbUrl: res.meals[0].strMealThumb,
           instructions: res.meals[0].strInstructions,
           area: res.meals[0].strArea,
