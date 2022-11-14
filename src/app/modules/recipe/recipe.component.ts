@@ -9,7 +9,6 @@ import {
   RemoveFromFavorites,
 } from 'src/app/core/store/recipes.actions';
 import { AppState } from 'src/app/core/store';
-import { NotificationsService } from 'src/app/core/services/notifications.service';
 
 @Component({
   selector: 'app-recipe',

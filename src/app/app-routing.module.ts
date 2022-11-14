@@ -6,6 +6,11 @@ import { ProfileComponent } from './modules/profile/profile.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
+    path: 'home',
+    loadChildren: () =>
+      import('./modules/home/home.module').then((m) => m.HomeModule),
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard],
@@ -36,6 +41,13 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () =>
       import('./modules/search/search.module').then((m) => m.SearchModule),
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./modules/not-found/not-found.module').then(
+        (m) => m.NotFoundModule
+      ),
   },
 ];
 

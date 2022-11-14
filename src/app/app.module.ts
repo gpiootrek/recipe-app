@@ -1,6 +1,6 @@
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -21,6 +21,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './core/store';
 import { RecipesEffects } from './core/store/recipes.effects';
 import { AuthGuardService } from './core/services/auth-guard.service';
+import { CustomErrorHandler } from './core/services/custom-error-handler.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -42,6 +43,10 @@ import { AuthGuardService } from './core/services/auth-guard.service';
     {
       provide: FIREBASE_OPTIONS,
       useValue: environment.firebase,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: CustomErrorHandler,
     },
     AuthService,
     AuthGuardService,

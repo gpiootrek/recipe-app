@@ -1,22 +1,22 @@
 import { NotificationsService } from './notifications.service';
 import { RECIPE_BY_NAME_URL } from './../constants/api-urls';
 import { UsersRecipeService } from './users-recipe.service';
-import { RecipeRes } from './../models/recipe-res';
-import { CategoriesResponse } from './../models/categories-response';
 import { Recipe } from 'src/app/core/models/recipe';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { Category } from '../models/category';
-import { Meal } from '../models/meal';
 import { Response } from '../models/response';
+import { RecipeRes } from './../models/recipe-res';
+import { CategoriesResponse } from '../models/categories-response';
+import { Category } from '../models/category';
+import { CategoryDetails } from '../models/category-details';
+import { Meal } from '../models/meal';
 import {
   RECIPE_URL,
   RANDOM_RECIPE_URL,
   RECIPES_BY_CATEGORY_URL,
   CATEGORIES_URL,
 } from '../constants/api-urls';
-import { CategoryDetails } from '../models/category-details';
 
 @Injectable({
   providedIn: 'root',
@@ -114,7 +114,7 @@ export class RecipeService {
             [res.meals[0].strIngredient20, res.meals[0].strMeasure20],
           ],
           youtubeUrl: res.meals[0].strYoutube,
-          tags: res.meals[0].strTags?.split(','),
+          tags: res.meals[0].strTags?.split(',').filter((tag) => tag.length),
           thumbUrl: res.meals[0].strMealThumb,
           instructions: res.meals[0].strInstructions,
           area: res.meals[0].strArea,

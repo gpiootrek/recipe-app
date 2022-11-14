@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { User } from './../../core/models/user';
+import { User } from 'src/app/core/models/user';
 import {
   Component,
   Input,

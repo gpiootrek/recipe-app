@@ -1,4 +1,4 @@
-import { Category } from './../../core/models/category';
+import { Category } from 'src/app/core/models/category';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CATEGORIES } from 'src/app/core/constants/categories';
 
