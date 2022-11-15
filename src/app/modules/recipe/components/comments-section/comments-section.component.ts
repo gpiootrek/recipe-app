@@ -5,35 +5,54 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Comment } from 'src/app/core/models/comment';
+import { RatingsService } from 'src/app/core/services/ratings.service';
 
 @Component({
   selector: 'recipe-comments-section',
   templateUrl: './comments-section.component.html',
   styleUrls: ['./comments-section.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentsSectionComponent implements OnInit {
   private commentsCollection: AngularFirestoreCollection<Comment>;
   comments$: Observable<Comment[]>;
   newComment: string = '';
   recipeId!: number;
+  rating!: number;
 
   constructor(
     private afs: AngularFirestore,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private ratingsService: RatingsService
   ) {
     this.commentsCollection = afs.collection<Comment>('comments');
     this.comments$ = this.commentsCollection.valueChanges();
+
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params['id'];
     });
+
+    this.afs
+      .collection('ratings')
+      .valueChanges()
+      .subscribe((data) => {
+        data.forEach((review: any) => {
+          if (
+            review.user.uid === this.authService.GetUserData().uid &&
+            review.recipeId === this.recipeId
+          ) {
+            this.rating = review.rating;
+          }
+        });
+      });
   }
 
   ngOnInit(): void {}
 
-  onAddComment() {
+  onAddComment(): void {
     if (this.newComment.trim().length === 0) return;
 
     this.commentsCollection.add({
@@ -45,5 +64,9 @@ export class CommentsSectionComponent implements OnInit {
       recipeId: this.recipeId,
     });
     this.newComment = '';
+  }
+
+  onRatingSave(): void {
+    this.ratingsService.saveRating(this.rating, this.recipeId);
   }
 }
