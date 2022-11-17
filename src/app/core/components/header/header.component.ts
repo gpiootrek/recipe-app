@@ -2,7 +2,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginModalComponent } from 'src/app/shared/components/login-modal/login-modal.component';
-import { User } from '../../models/user';
+import { User } from 'src/app/core/models/user';
 
 @Component({
   selector: 'app-header',

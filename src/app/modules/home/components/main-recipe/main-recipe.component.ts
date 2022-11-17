@@ -1,4 +1,3 @@
-import { Recipe } from './../../../../core/models/recipe';
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { Meal } from 'src/app/core/models/meal';
@@ -19,7 +18,6 @@ export class MainRecipeComponent implements OnInit {
   }
 
   getRecipe() {
-    this.recipeService.getRandomMeal().subscribe(
-      (data) => this.meal = data);
+    this.recipeService.getRandomMeal().subscribe((data) => (this.meal = data));
   }
 }

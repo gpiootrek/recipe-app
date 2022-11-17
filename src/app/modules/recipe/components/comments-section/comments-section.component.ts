@@ -16,14 +16,12 @@ import { RatingsService } from 'src/app/core/services/ratings.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentsSectionComponent implements OnInit {
-  private commentsCollection: AngularFirestoreCollection<Comment>;
   comments$: Observable<Comment[]>;
   newComment: string = '';
   recipeId!: number;
   rating$!: Observable<number | undefined>;
 
   constructor(
-    private afs: AngularFirestore,
     private route: ActivatedRoute,
     private authService: AuthService,
     private ratingsService: RatingsService
@@ -31,6 +29,10 @@ export class CommentsSectionComponent implements OnInit {
     this.commentsCollection = afs.collection<Comment>('comments');
     this.comments$ = this.commentsCollection.valueChanges();
 
+    private commentsService: CommentsService
+  ) {
+    this.comments$ = this.commentsService.getComments();
+    
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params['id'];
     });
