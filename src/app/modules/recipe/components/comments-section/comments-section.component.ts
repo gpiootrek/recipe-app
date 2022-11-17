@@ -1,13 +1,10 @@
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from './../../../../core/services/auth.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Comment } from 'src/app/core/models/comment';
 import { RatingsService } from 'src/app/core/services/ratings.service';
+import { CommentsService } from './comments.service';
 
 @Component({
   selector: 'recipe-comments-section',
@@ -23,16 +20,11 @@ export class CommentsSectionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private authService: AuthService,
-    private ratingsService: RatingsService
-  ) {
-    this.commentsCollection = afs.collection<Comment>('comments');
-    this.comments$ = this.commentsCollection.valueChanges();
-
+    private ratingsService: RatingsService,
     private commentsService: CommentsService
   ) {
     this.comments$ = this.commentsService.getComments();
-    
+
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params['id'];
     });
@@ -43,20 +35,12 @@ export class CommentsSectionComponent implements OnInit {
   ngOnInit(): void {}
 
   onAddComment(): void {
-    if (this.newComment.trim().length === 0) return;
-
-    this.commentsCollection.add({
-      user: this.authService.GetUserData(),
-      text: this.newComment,
-      date: new Date().getTime(),
-      replies: [],
-      likes: 0,
-      recipeId: this.recipeId,
-    });
-    this.newComment = '';
+    this.commentsService.addComment(this.recipeId, this.newComment);
   }
 
   onRatingSave(rating: number): void {
     this.ratingsService.saveRating(rating, this.recipeId);
   }
+
+  identify = (index: number, item: Comment) => item;
 }

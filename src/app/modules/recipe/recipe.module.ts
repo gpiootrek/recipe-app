@@ -8,7 +8,8 @@ import { CommonModule } from '@angular/common';
 import { RecomendedComponent } from './components/recomended/recomended.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxStarRatingModule } from 'ngx-star-rating';
-import { CommentComponent } from './components/comment/comment.component';
+import { CommentComponent } from './components/comments-section/comment/comment.component';
+import { CommentsService } from './components/comments-section/comments.service';
 @NgModule({
   declarations: [
     RecipeComponent,
@@ -25,5 +26,6 @@ import { CommentComponent } from './components/comment/comment.component';
     NgxStarRatingModule,
     ReactiveFormsModule
   ],
+  providers: [CommentsService]
 })
 export class RecipeModule {}
