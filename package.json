@@ -23,6 +23,8 @@
     "@angular/router": "^14.1.0",
     "@ngrx/effects": "^14.3.1",
     "@ngrx/store": "^14.3.1",
+    "assert": "^2.0.0",
+    "ngx-dropzone": "^3.1.0",
     "ngx-star-rating": "^2.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
