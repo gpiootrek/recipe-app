@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 *,
 *::after,
 *::before {
@@ -34,5 +36,31 @@ body {
     gap: 2rem;
     width: 100%;
     margin-top: 2rem;
+  }
+}
+
+.action {
+  padding: 1rem 3rem;
+  margin-left: 2rem;
+  border-radius: 0.4rem;
+  border: unset;
+  background-color: $button-primary;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+
+  &--secondary {
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+  }
+
+  &--no-margin {
+    margin-left: 0;
+  }
+
+  &--start {
+    align-self: flex-start;
   }
 }

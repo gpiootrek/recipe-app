@@ -11,20 +11,25 @@ import {
 } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { ImageDropComponent } from './image-drop/image-drop.component';
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, ImageDropComponent],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
   @Input() user!: User;
   isSubscribing$: Observable<boolean>;
+  files: File[] = [];
 
   constructor(
     public authService: AuthService,
+    public dialog: MatDialog,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore
   ) {
@@ -46,6 +51,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.GetUserData();
+  }
+
+  openDialog() {
+    this.dialog.open(ImageDropComponent);
   }
 
   saveUser(name: string, email: string, password: string) {

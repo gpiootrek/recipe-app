@@ -1,0 +1,31 @@
+<mat-dialog-content class="modal image-drop">
+  <ngx-dropzone (change)="onSelect($event)" *ngIf="!file; else fileSelected">
+    <ngx-dropzone-label
+      >Click and select image or drop it here.</ngx-dropzone-label
+    >
+  </ngx-dropzone>
+  <ng-template #fileSelected>
+    <ngx-dropzone-preview
+      *ngIf="file"
+      [removable]="true"
+      (removed)="onRemove()"
+    >
+      <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+    </ngx-dropzone-preview>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="action action--secondary">
+    Cancel
+  </button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    class="action"
+    (click)="changeImage()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>
