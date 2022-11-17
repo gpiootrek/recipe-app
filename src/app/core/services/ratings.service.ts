@@ -1,7 +1,8 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
-import { map, take } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Review } from '../models/review';
 
 @Injectable({
   providedIn: 'root',
@@ -12,15 +13,35 @@ export class RatingsService {
     private authService: AuthService
   ) {}
 
-  saveRating(rating: number, recipeId: number) {
+  getRating(recipeId: number): Observable<number | undefined> {
+    return this.afs
+      .collection<Review>('ratings')
+      .valueChanges()
+      .pipe(
+        map((data: Review[]) => {
+          let rating;
+          data.forEach((review: Review) => {
+            if (
+              review.user.uid === this.authService.GetUserData().uid &&
+              review.recipeId === recipeId
+            ) {
+              rating = review.rating;
+            }
+          });
+          return rating;
+        })
+      );
+  }
+
+  saveRating(rating: number, recipeId: number): void {
     if (!rating) return;
 
     this.afs
-      .collection('ratings')
+      .collection<any>('ratings')
       .valueChanges({ idField: 'id' })
       .pipe(
         take(1),
-        map((docs: any) => {
+        map((docs: any[]) => {
           let id = null;
           docs.forEach((doc: any) => {
             if (

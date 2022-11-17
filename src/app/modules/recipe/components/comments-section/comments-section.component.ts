@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { AuthService } from './../../../../core/services/auth.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import {
@@ -20,7 +20,7 @@ export class CommentsSectionComponent implements OnInit {
   comments$: Observable<Comment[]>;
   newComment: string = '';
   recipeId!: number;
-  rating!: number;
+  rating$!: Observable<number | undefined>;
 
   constructor(
     private afs: AngularFirestore,
@@ -35,19 +35,7 @@ export class CommentsSectionComponent implements OnInit {
       this.recipeId = +params['id'];
     });
 
-    this.afs
-      .collection('ratings')
-      .valueChanges()
-      .subscribe((data) => {
-        data.forEach((review: any) => {
-          if (
-            review.user.uid === this.authService.GetUserData().uid &&
-            review.recipeId === this.recipeId
-          ) {
-            this.rating = review.rating;
-          }
-        });
-      });
+    this.rating$ = this.ratingsService.getRating(this.recipeId);
   }
 
   ngOnInit(): void {}
@@ -66,7 +54,7 @@ export class CommentsSectionComponent implements OnInit {
     this.newComment = '';
   }
 
-  onRatingSave(): void {
-    this.ratingsService.saveRating(this.rating, this.recipeId);
+  onRatingSave(rating: number): void {
+    this.ratingsService.saveRating(rating, this.recipeId);
   }
 }
