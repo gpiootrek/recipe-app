@@ -2,11 +2,11 @@
   <header class="content__header profile__header">
     <h2 class="content__heading profile__heading">Profile</h2>
     <div class="header__container">
-      <button class="profile__button" (click)="this.authService.SignOut()">
+      <button class="action" (click)="this.authService.SignOut()">
         Sign out
       </button>
       <button
-        class="profile__button"
+        class="action"
         (click)="saveUser(userName.value, userEmail.value, userPassword.value)"
       >
         Save
@@ -16,8 +16,8 @@
   <div class="profile__user">
     <div class="user__image-container">
       <img src="{{ user.photoURL }}" alt="" width="128" />
-      <button class="profile__button">Change photo</button>
-      <button class="profile__button profile__button--secondary">Reset</button>
+      <button class="action" (click)="openDialog()">Change photo</button>
+      <button class="action action--secondary">Reset</button>
     </div>
     <div class="user__info-container">
       <label for="" class="user__label">
@@ -52,7 +52,7 @@
       <h3 class="user__heading">Newsletter</h3>
       <ng-container *ngIf="isSubscribing$ | async; else notSubscribing">
         <button
-          class="profile__button profile__button--secondary profile__button--subscription"
+          class="action action--start action--secondary"
           (click)="onUnsubscribe()"
         >
           Unsubscribe
@@ -60,7 +60,7 @@
       </ng-container>
       <ng-template #notSubscribing>
         <button
-          class="profile__button profile__button--subscription"
+          class="action action--start"
           (click)="onSubscribe()"
         >
           Subscribe
