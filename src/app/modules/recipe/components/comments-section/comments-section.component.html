@@ -1,5 +1,7 @@
 <section class="comments">
   <h2 class="comments__heading">Already made this?</h2>
+  <p class="comments__text">Rate the recipe and let other users know what you think about it.</p>
+  <ngx-star-rating [ngModel]="rating$ | async" [disabled]="false" class="comments__rating" (ngModelChange)="onRatingSave($event)"></ngx-star-rating>
   <form class="comments__add-form" (ngSubmit)="onAddComment()">
     <textarea
       name="add-comment"

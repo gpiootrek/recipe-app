@@ -10,4 +10,5 @@ export interface Recipe {
     instructions?: string;
     area?: string;
     source?: string;
+    ratings?: number[];
 }

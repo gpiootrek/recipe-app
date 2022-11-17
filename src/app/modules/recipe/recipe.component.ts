@@ -20,11 +20,10 @@ export class RecipeComponent implements OnInit {
   id!: string;
   isFavorite$!: Observable<number>;
   helper!: Observable<number[]>;
-
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private store: Store<AppState>
+    private store: Store<AppState>,
   ) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];

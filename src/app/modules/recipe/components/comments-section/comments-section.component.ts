@@ -1,35 +1,62 @@
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { AuthService } from './../../../../core/services/auth.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Comment } from 'src/app/core/models/comment';
-import { CommentsService } from './comments.service';
+import { RatingsService } from 'src/app/core/services/ratings.service';
 
 @Component({
   selector: 'recipe-comments-section',
   templateUrl: './comments-section.component.html',
   styleUrls: ['./comments-section.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentsSectionComponent implements OnInit {
   comments$: Observable<Comment[]>;
   newComment: string = '';
   recipeId!: number;
+  rating$!: Observable<number | undefined>;
 
   constructor(
     private route: ActivatedRoute,
+    private authService: AuthService,
+    private ratingsService: RatingsService
+  ) {
+    this.commentsCollection = afs.collection<Comment>('comments');
+    this.comments$ = this.commentsCollection.valueChanges();
+
     private commentsService: CommentsService
   ) {
     this.comments$ = this.commentsService.getComments();
+    
     this.route.params.subscribe((params: Params) => {
       this.recipeId = +params['id'];
     });
+
+    this.rating$ = this.ratingsService.getRating(this.recipeId);
   }
 
   ngOnInit(): void {}
 
-  onAddComment() {
-    this.commentsService.addComment(this.recipeId, this.newComment);
+  onAddComment(): void {
+    if (this.newComment.trim().length === 0) return;
+
+    this.commentsCollection.add({
+      user: this.authService.GetUserData(),
+      text: this.newComment,
+      date: new Date().getTime(),
+      replies: [],
+      likes: 0,
+      recipeId: this.recipeId,
+    });
     this.newComment = '';
   }
 
-  identify = (index: number, item: Comment): number => index;
+  onRatingSave(rating: number): void {
+    this.ratingsService.saveRating(rating, this.recipeId);
+  }
 }
