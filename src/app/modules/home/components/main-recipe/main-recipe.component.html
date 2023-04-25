@@ -1,4 +1,4 @@
-<div class="home__main-recipe" *ngIf="meal">
+<div class="home__main-recipe" *ngIf="(meal$ | async) as meal">
   <div class="main-recipe__image-container">
     <img
       src="{{ meal.strMealThumb }}"

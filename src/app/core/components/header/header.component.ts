@@ -11,7 +11,8 @@ import { User } from 'src/app/core/models/user';
 })
 export class HeaderComponent implements OnInit {
   user: User | null = null;
-  isLogged: boolean = false;
+  isLogged = false;
+  isMenuOpen = false;
 
   constructor(public dialog: MatDialog, public afAuth: AngularFireAuth) {
     afAuth.user.subscribe((user) => {
@@ -26,6 +27,14 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
 
   openDialog() {
     this.dialog.open(LoginModalComponent);

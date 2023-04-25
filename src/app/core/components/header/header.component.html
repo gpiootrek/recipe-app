@@ -1,12 +1,14 @@
-<header class="header">
-  <img src="../../../../assets/img/logo.png" alt="Application logo" width="80" class="header__logo" />
-  <nav class="header__nav">
-    <a routerLink="/" class="header__link" aria-label="Go to Homepage">Homepage</a>
-    <a routerLink="/recipes" class="header__link" aria-label="Go to Recipes">Recipes</a>
-    <a routerLink="/categories" class="header__link" aria-label="Go to Categories">Categories</a>
-    <a routerLink="/saved" class="header__link" aria-label="Go to Saved">Saved</a>
+<header class="header" [ngClass]="isMenuOpen ? 'header--open' : ''">
+  <a routerLink="/">
+    <img src="../../../../assets/img/logo.png" alt="Application logo" width="80" class="header__logo" />
+  </a>
+  <nav class="header__nav" [ngClass]="isMenuOpen ? 'header__nav--open' : ''">
+    <a routerLink="/" class="header__link" aria-label="Go to Homepage" (click)="closeMenu()">Homepage</a>
+    <a routerLink="/recipes" class="header__link" aria-label="Go to Recipes" (click)="closeMenu()">Recipes</a>
+    <a routerLink="/categories" class="header__link" aria-label="Go to Categories" (click)="closeMenu()">Categories</a>
+    <a routerLink="/saved" class="header__link" aria-label="Go to Saved" (click)="closeMenu()">Saved</a>
   </nav>
-  <div class="header__buttons-container">
+  <div class="header__buttons-container" [ngClass]="isMenuOpen ? 'header__buttons-container--open' : ''">
     <a routerLink="/search" class="header__button" aria-label="Search" >
       <img src="../../../../assets/img/search.svg" alt="" width="30" />
     </a>
@@ -17,4 +19,7 @@
       <img src="{{user?.photoURL}}" width="30" alt="" />
     </a>
   </div>
+  <button class="header__hamburger-menu" [ngClass]="isMenuOpen ? 'header__hamburger-menu--open' : ''" (click)="toggleMenu()">
+    <span class="header__hamburger-menu__line" [ngClass]="isMenuOpen ? 'header__hamburger-menu__line--open' : ''"></span>
+  </button>
 </header>

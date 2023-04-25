@@ -5,6 +5,20 @@
   justify-content: space-between;
   align-items: center;
   padding: 2rem 10%;
+  z-index: 100;
+
+  @include respond-to($screen-md) {
+    &--open {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: $background-highlight;
+    }
+  }
 
   &__logo {
     width: 10rem;
@@ -13,6 +27,14 @@
   &__nav {
     display: flex;
     gap: 8rem;
+    @include respond-to($screen-md) {
+      display: none;
+
+      &--open {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
 
   &__link {
@@ -23,11 +45,74 @@
   &__buttons-container {
     display: flex;
     gap: 4rem;
+    @include respond-to($screen-md) {
+      display: none;
+
+      &--open {
+        display: flex;
+      }
+    }
   }
 
   &__button {
     border: none;
     background-color: transparent;
     cursor: pointer;
+  }
+
+  &__hamburger-menu {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    &--open {
+      position: absolute;
+      top: 3rem;
+      left: -10rem;
+    }
+
+    &__line {
+      position: relative;
+      width: 48px;
+      height: 3px;
+      background-color: #000;
+
+      &::after,
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 48px;
+        height: 3px;
+        background-color: #000;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      &::before {
+        top: -20px;
+      }
+
+      &::after {
+        top: 20px;
+      }
+
+      &--open {
+        background-color: transparent;
+
+        &::after {
+          transform: rotate(45deg) translateY(-27px);
+        }
+
+        &::before {
+          transform: rotate(-45deg) translateY(27px);
+        }
+      }
+    }
   }
 }

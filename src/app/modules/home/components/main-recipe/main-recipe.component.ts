@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { Meal } from 'src/app/core/models/meal';
@@ -8,7 +9,7 @@ import { Meal } from 'src/app/core/models/meal';
   styleUrls: ['./main-recipe.component.scss'],
 })
 export class MainRecipeComponent implements OnInit {
-  meal: Meal | undefined;
+  meal$!: Observable<Meal>;
   rating = Math.floor(Math.random() * 30 + 70);
 
   constructor(private recipeService: RecipeService) {}
@@ -18,6 +19,6 @@ export class MainRecipeComponent implements OnInit {
   }
 
   getRecipe() {
-    this.recipeService.getRandomMeal().subscribe((data) => (this.meal = data));
+    this.meal$ = this.recipeService.getRandomMeal();
   }
 }
